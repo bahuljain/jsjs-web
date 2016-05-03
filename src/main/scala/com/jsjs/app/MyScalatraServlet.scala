@@ -2,16 +2,34 @@ package com.jsjs.app
 
 import org.scalatra._
 
+// JSON-related libraries
+import org.json4s.{DefaultFormats, Formats}
+
+// JSON handling support from Scalatra
+import org.scalatra.json._
+
+case class Flower(slug: String, name: String)
+
+object FlowerData {
+  var all = List(
+    Flower("yellow-tulip", "Yellow Tulip"),
+    Flower("red-rose", "Red Rose"),
+    Flower("black-rose", "Black Rose"))
+}
+
 class MyScalatraServlet extends JsjsStack {
 
-	/*	get("/") {
-		<html>
-			<body>
-				<h1>Hello from JSJS!</h1>
-				Say<a href="hello-scalate">hello to Scalate</a>
-				.
-			</body>
-		</html>
+    // Sets up automatic case class to JSON output serialization, required by
+    // protected implicit lazy val jsonFormats: Formats = DefaultFormats
+
+	get("/") {
+      findTemplate("index") map { path =>
+        contentType = "text/html"
+        layoutTemplate(path)
+      } getOrElse resourceNotFound()
 	}
-*/
+
+    get("/result") {
+      FlowerData.all
+    }
 }
