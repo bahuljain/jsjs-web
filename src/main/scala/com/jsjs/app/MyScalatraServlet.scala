@@ -3,7 +3,7 @@ package com.jsjs.app
 import org.scalatra._
 
 // JSON-related libraries
-import org.json4s.{DefaultFormats, Formats}
+import org.json4s.{ DefaultFormats, Formats }
 
 // JSON handling support from Scalatra
 import org.scalatra.json._
@@ -11,25 +11,30 @@ import org.scalatra.json._
 case class Flower(slug: String, name: String)
 
 object FlowerData {
-  var all = List(
-    Flower("yellow-tulip", "Yellow Tulip"),
-    Flower("red-rose", "Red Rose"),
-    Flower("black-rose", "Black Rose"))
+	var all = List(
+		Flower("yellow-tulip", "Yellow Tulip"),
+		Flower("red-rose", "Red Rose"),
+		Flower("black-rose", "Black Rose"))
 }
 
-class MyScalatraServlet extends JsjsStack {
+class MyScalatraServlet extends JsjsStack with JacksonJsonSupport {
 
-    // Sets up automatic case class to JSON output serialization, required by
-    // protected implicit lazy val jsonFormats: Formats = DefaultFormats
+	protected implicit lazy val jsonFormats: Formats = DefaultFormats
+	// Sets up automatic case class to JSON output serialization, required by
+	//	protected implicit lazy val jsonFormats: Formats = DefaultFormats
 
-	get("/") {
-      findTemplate("index") map { path =>
-        contentType = "text/html"
-        layoutTemplate(path)
-      } getOrElse resourceNotFound()
+	before() {
+		contentType = formats("json")
 	}
 
-    get("/result") {
-      FlowerData.all
-    }
+	get("/") {
+		findTemplate("index") map { path =>
+			contentType = "text/html"
+			layoutTemplate(path)
+		} getOrElse resourceNotFound()
+	}
+
+	get("/result") {
+		FlowerData.all
+	}
 }
