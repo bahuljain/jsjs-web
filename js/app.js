@@ -56,13 +56,44 @@ val ninetyNine = /\(x: num): unit => {
 ninetyNine(99);
 */});
 
+
+var maps = multiline(function() {/*
+// create maps just like javascript
+val marksInExams = {
+    "physics": 80,
+    "mathematics": 83,
+    "greek": 63,
+    "computer science": 94
+};
+
+val moneyOwedByFriends = {
+    "ben": 10,
+    "mary": 20,
+    "mark": 43,
+    "alice": 54
+};
+
+// a function that takes a map
+val getTotal = /\(m: <string: num>): num => {
+    val values = Map.values(m);
+    List.fold_left(/\(x, y) => x + y, 0, values);
+};
+
+print(getTotal(moneyOwedByFriends));
+*/});
+
 var samples = {
     gcd: gcd,
     prime: prime,
-    bottles: bottles
+    bottles: bottles,
+    maps: maps
 };
 
+var allPanels = $('ul#examples li p').hide();
+
 $("ul#examples li").on('click', function(e) {
+    allPanels.slideUp();
+    $(this).find('p').slideDown();
     var title = $(this).data('title');
-    editor.setValue(samples[title]);
+    editor.setValue(samples[title], 1);
 });
