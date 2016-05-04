@@ -1,26 +1,45 @@
-body { 
-    font-family: 'lato'; 
+body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.5;
+    font-size: 100%;
 }
 
 #editor {
   height:300px;
-  font-size: 16px;
+  font-size: 14px;
   border: 1px solid #eee;
   font-family: 'PT Mono', monospace;
+  margin-bottom: 20px;
 }
 
 header {
     font-family: 'Poppins', sans-serif;
     background: #394046;
-    color: #eee;
+    color: #AF956F;
+    margin-bottom: 40px;
 }
 
 header h1 {
-        letter-spacing: 3px;
+    letter-spacing: 3px;
     font-size: 40px;
     margin: 0;
-    color: #9c9fa2;
     padding-top: 18px;
+    text-shadow: 1px 1px #d3c5b1;
 }
 
-header button { width:200px; }
+div.runner {
+    display: flex;
+  justify-content: space-between;
+    
+}
+
+h4 {
+    text-transform: uppercase;
+    color: #C52727;
+    font-size: 24px;
+}
+
+.button.button-primary { 
+    background-color: #0099dd;
+    border-color: #0099dd;
+}

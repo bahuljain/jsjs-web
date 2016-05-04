@@ -28,14 +28,19 @@
     </header>
 
   <div class="container">
-    <div class="row">
-
-    </div>
-
-    <div class="row">
-      <div class="six columns"> load examples </div>
+    <div class="row main">
+      <div class="six columns"> 
+        <h4>Examples</h4>
+      
+      
+      
+      </div>
       <div class="six columns">
-        <h4>Try it out!</h4>
+        <div class="runner">
+          <h4>Try it out!</h4>
+          <button class="button button-primary"> ► Run in browser</button>
+        </div>
+
         <div id="editor">// the square function
 val sq = /\(x) => x * x;
 
@@ -47,7 +52,6 @@ val sum: list num = List.reduce(
     // standard library
     List.map(sq, List.range(1, 10))
 );</div>
-        <button class="button button-primary"> Run in browser</button>
       </div>
     </div>
   </div>
