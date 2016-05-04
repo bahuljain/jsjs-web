@@ -52,8 +52,3 @@ class JSJS {
 	private def runCompiledCode: String =
 		Process("node out.js", new File(jsjsPath)).!!
 }
-
-object JSJSCompilerTest extends App {
-	val jsjs = new JSJS
-	println(jsjs.compile())
-}
