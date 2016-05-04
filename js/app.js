@@ -97,3 +97,15 @@ $("ul#examples li").on('click', function(e) {
     var title = $(this).data('title');
     editor.setValue(samples[title], 1);
 });
+
+var results = $('div#results')[0];
+$("button#run").on('click', function(e) {
+    var str = "this is cool";
+    var success = true;
+    $(results).find('p').text(str);
+    if (success) {
+        $(results).addClass("success").removeClass("failure");
+    } else {
+        $(results).addClass("failure").removeClass("success");
+    }
+});

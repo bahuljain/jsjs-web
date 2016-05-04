@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="css/skeleton.css">
   <link rel="stylesheet" href="css/main.css">
   
-  <link href="http://fonts.googleapis.com/css?family=Lato:600" rel="stylesheet" type="text/css">
+  <link href="http://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
   <link href='https://fonts.googleapis.com/css?family=PT+Mono' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Bangers' rel='stylesheet' type='text/css'>
   <style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}
@@ -78,7 +78,7 @@
       <div class="eight columns">
         <div class="runner">
           <h4>Try it out!</h4>
-          <button class="button button-primary"> ► Run in browser</button>
+          <button id="run" class="button button-primary"> ► Run in browser</button>
         </div>
 
         <div id="editor">// the square function
@@ -92,6 +92,12 @@ val sum: list num = List.reduce(
     // standard library
     List.map(sq, List.range(1, 10))
 );</div>
+
+    <div id="results">
+      <p>Error: There was a syntax error in your file.</p>
+    </div>
+
+
       </div>
     </div>
   </div>

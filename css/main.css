@@ -108,3 +108,21 @@ h4 {
     background-color: #4db60a;
     border-color: #4db60a;
 }
+
+
+div#results {
+    border: 2px solid #eee;
+    padding: 8px 14px;
+    border-radius: 5px;
+}
+div#results p {
+    font-family: 'PT Mono', monospace;
+}
+
+div#results.success {
+    border-color: #46A609;
+}
+
+div#results.failure {
+    border-color: #C52727;
+}
