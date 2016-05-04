@@ -13,7 +13,7 @@ class JSJS {
 	 * JSJS compiler (jsjs.out file) in the GLOBAL environment
 	 * variable named "JSJS".
 	 *
-	 * The below code obtains the path of the JSJS compiler from the
+	 * The code below obtains the path of the JSJS compiler from the
 	 * global environment.
 	 */
 	val jsjsPath: String = try { sys.env("JSJS") } catch {
@@ -28,25 +28,23 @@ class JSJS {
 		 * The compilation process starts with echoing
 		 * the code, which is then grabbed by the jsjs
 		 * compiler. The result of the compilation is
-		 * then stored in a file called 'log'.
+		 * then stored in a file called 'jsjs.log'.
 		 */
 		val compilationProcess = Process(s"echo $code") #|
 			Process("./jsjs.out", new File(jsjsPath)) #>
 			(new File("jsjs.log"))
 
-		val status_code = compilationProcess.!
-
 		/*  Status Codes:
 		 * 		0: Success and return Compiled Code
 		 * 		1: Failed and return Error Log
 		 */
-		status_code match {
+		compilationProcess.! match {
 			case 0 => CompilerResponse(status = 0, code = getCompiledCode)
 			case 1 => CompilerResponse(status = 1, error = io.Source.fromFile("jsjs.log").mkString)
 		}
 	}
 
-	//	Obtains the compiled code, which is stored in out.js that exists the same folder as jsjs.out
+	//	Obtains the compiled code, which is stored in out.js that exists in the same folder as jsjs.out
 	private def getCompiledCode: String =
 		Process("cat out.js", new File(jsjsPath)).!!
 
