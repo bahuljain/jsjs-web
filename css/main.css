@@ -33,6 +33,38 @@ div.runner {
     
 }
 
+.main p {
+    font-size: 14px;
+    color: #394046;
+    font-family: 'Lato';
+}
+
+ul#examples {
+    list-style-type: none;
+}
+
+ul li {
+    border-radius: 5px;
+    border: 1px solid #eee;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+ul li:hover {
+    border: 1px solid #46A609;
+    cursor: pointer;
+}
+
+ul h5 {
+    margin-bottom: 5px;
+    font-size: 14px;
+    text-transform: uppercase;
+}
+
+ul li p {
+    margin-bottom: 0px;
+}
+
 h4 {
     text-transform: uppercase;
     color: #C52727;
