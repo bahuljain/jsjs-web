@@ -29,23 +29,23 @@
 
   <div class="container">
     <div class="row main">
-      <div class="six columns"> 
+      <div class="four columns"> 
         <h4>Examples</h4>
         <p>Click on one of the examples to load and freely 
         edit the code for it in the editor.</p>
 
         <ul id="examples">
-          <li>
+          <li data-title="gcd">
             <h5>Greatest Common Divisor</h5>
             <p>Compute the GCD of two numbers using Euclid's algorithm</p>
           </li>
-          <li>
+          <li data-title="prime">
             <h5>Prime Sieve</h5>
             <p>
            Sieve of Eratosthenes is a simple, ancient algorithm for finding all prime numbers up to any given limit.
             </p>
           </li>
-          <li>
+          <li data-title="bottles">
             <h5>99 bottles of beer</h5>
             <p>
             Joining the ranks of 600 other programming languages by programmatically generating this popular folk song.
@@ -54,7 +54,7 @@
         </ul>
       
       </div>
-      <div class="six columns">
+      <div class="eight columns">
         <div class="runner">
           <h4>Try it out!</h4>
           <button class="button button-primary"> ► Run in browser</button>
@@ -79,6 +79,8 @@ val sum: list num = List.reduce(
 </div>
 
 <script src="https://cdn.jsdelivr.net/ace/1.2.3/min/ace.js" type="text/javascript" charset="utf-8"></script>
+<script src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo="   crossorigin="anonymous"></script>
+<script src="js/multiline.js" type="text/javascript"></script>
 <script src="js/app.js" type="text/javascript"></script>
 </body>
 </html>

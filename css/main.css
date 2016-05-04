@@ -5,11 +5,11 @@ body {
 }
 
 #editor {
-  height:300px;
-  font-size: 14px;
-  border: 1px solid #eee;
-  font-family: 'PT Mono', monospace;
-  margin-bottom: 20px;
+    height:300px;
+    font-size: 14px;
+    border: 1px solid #eee;
+    font-family: 'PT Mono', monospace;
+    margin-bottom: 20px;
 }
 
 header {
@@ -17,6 +17,7 @@ header {
     background: #394046;
     color: #AF956F;
     margin-bottom: 40px;
+    text-shadow: 0 1px 1px #14191f;
 }
 
 header h1 {
@@ -29,8 +30,8 @@ header h1 {
 
 div.runner {
     display: flex;
-  justify-content: space-between;
-    
+    justify-content: space-between;
+    vertical-align: bottom;
 }
 
 .main p {
