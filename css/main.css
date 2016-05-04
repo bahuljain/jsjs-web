@@ -1,5 +1,5 @@
 body {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Lato', sans-serif;
     line-height: 1.5;
     font-size: 100%;
 }
@@ -7,25 +7,36 @@ body {
 #editor {
     height:300px;
     font-size: 14px;
+    border-radius: 5px;
     border: 1px solid #eee;
     font-family: 'PT Mono', monospace;
     margin-bottom: 20px;
 }
 
 header {
-    font-family: 'Poppins', sans-serif;
     background: #394046;
-    color: #AF956F;
     margin-bottom: 40px;
-    text-shadow: 0 1px 1px #14191f;
+    padding: 10px;
 }
 
-header h1 {
-    letter-spacing: 3px;
-    font-size: 40px;
+div.topbar {
+    background: #C52727;
+}
+
+header p {
+    color: white;
     margin: 0;
-    padding-top: 18px;
-    text-shadow: 1px 1px #d3c5b1;
+    font-size: 13px;
+    font-weight: 200;
+    font-style: italic;
+}
+
+div.topbar h1 {
+    letter-spacing: 6px;
+    font-size: 60px;
+    margin: 0;
+    font-family: 'Bangers', cursive;
+    color: white;
 }
 
 div.runner {
@@ -51,6 +62,19 @@ ul li {
     cursor: pointer;
 }
 
+ul#features {
+    list-style-type: none;
+    font-family: 'Lato', sans-serif;
+    font-size: 12px;
+    color: white;
+    display: flex;
+}
+
+ul#features li {
+    border: none;
+}
+
+
 ul li:hover {
     border: 1px solid #46A609;
     cursor: pointer;
@@ -59,6 +83,7 @@ ul li:hover {
 ul h5 {
     margin-bottom: 5px;
     font-size: 14px;
+    font-weight: 600;
     text-transform: uppercase;
 }
 
@@ -68,11 +93,18 @@ ul li p {
 
 h4 {
     text-transform: uppercase;
+    letter-spacing: 3px;
     color: #C52727;
     font-size: 24px;
+    font-family: 'Bangers', cursive;
 }
 
 .button.button-primary { 
-    background-color: #0099dd;
-    border-color: #0099dd;
+    background-color: #46A609;
+    border-color: #46A609;
+}
+
+.button.button-primary:hover { 
+    background-color: #4db60a;
+    border-color: #4db60a;
 }
