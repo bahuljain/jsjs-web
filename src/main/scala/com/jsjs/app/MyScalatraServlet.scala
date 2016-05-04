@@ -4,14 +4,6 @@ import org.scalatra._
 import org.json4s.{ DefaultFormats, Formats }
 import org.scalatra.json._
 
-case class Flower(slug: String, name: String)
-object FlowerData {
-	var all = List(
-		Flower("yellow-tulip", "Yellow Tulip"),
-		Flower("red-rose", "Red Rose"),
-		Flower("black-rose", "Black Rose"))
-}
-
 class MyScalatraServlet extends JsjsStack with JacksonJsonSupport {
 	protected implicit lazy val jsonFormats: Formats = DefaultFormats
 	// Sets up automatic case class to JSON output serialization, required by
@@ -29,6 +21,7 @@ class MyScalatraServlet extends JsjsStack with JacksonJsonSupport {
 	}
 
 	get("/result") {
-		FlowerData.all
+		val compiler = new JSJS
+		compiler.compile()
 	}
 }

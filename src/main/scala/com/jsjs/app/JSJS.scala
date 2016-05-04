@@ -2,9 +2,13 @@ package com.jsjs.app
 
 import java.io.File
 import sys.process.Process
-import scala.util.{ Try, Success, Failure }
 
-case class CompilerResponse(status: Int, code: String = "", error: String = "")
+case class CompilerResponse(
+	status: Int,
+	sourceCode: String,
+	compiledCode: String = "",
+	error: String = "",
+	compilationTime: Long)
 
 class JSJS {
 
@@ -16,12 +20,12 @@ class JSJS {
 	 * The code below obtains the path of the JSJS compiler from the
 	 * global environment.
 	 */
-	val jsjsPath: String = try { sys.env("JSJS") } catch {
+	private val jsjsPathFile: File = try { new File(sys.env("JSJS")) } catch {
 		case _: NoSuchElementException =>
 			throw new NoSuchElementException("No path found in environment for key: JSJS")
 	}
 
-	val defaultCode: String = "print((10 + 10));";
+	private val defaultCode: String = "print((10 + 10));";
 
 	def compile(code: String = defaultCode): CompilerResponse = {
 		/*
@@ -31,24 +35,38 @@ class JSJS {
 		 * then stored in a file called 'jsjs.log'.
 		 */
 		val compilationProcess = Process(s"echo $code") #|
-			Process("./jsjs.out", new File(jsjsPath)) #>
+			Process("./jsjs.out", jsjsPathFile) #>
 			(new File("jsjs.log"))
 
 		/*  Status Codes:
 		 * 		0: Success and return Compiled Code
 		 * 		1: Failed and return Error Log
 		 */
+		val startTime = System.nanoTime();
+
 		compilationProcess.! match {
-			case 0 => CompilerResponse(status = 0, code = getCompiledCode)
-			case 1 => CompilerResponse(status = 1, error = io.Source.fromFile("jsjs.log").mkString)
+			case 0 => CompilerResponse(
+				status = 0,
+				sourceCode = code,
+				compiledCode = getCompiledCode,
+				compilationTime = System.nanoTime() - startTime)
+			case 1 => CompilerResponse(
+				status = 1,
+				sourceCode = code,
+				error = getErrorLog,
+				compilationTime = System.nanoTime() - startTime)
 		}
 	}
 
-	//	Obtains the compiled code, which is stored in out.js that exists in the same folder as jsjs.out
+	//	Obtains the compiled code, which is stored in out.js that
+	//	exists in the same folder as jsjs.out
 	private def getCompiledCode: String =
-		Process("cat out.js", new File(jsjsPath)).!!
+		Process("cat out.js", jsjsPathFile).!!
 
 	//	Runs the compiled javascript code using node.js
 	private def runCompiledCode: String =
-		Process("node out.js", new File(jsjsPath)).!!
+		Process("node out.js", jsjsPathFile).!!
+
+	private def getErrorLog: String =
+		io.Source.fromFile("jsjs.log") mkString
 }
