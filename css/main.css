@@ -1,0 +1,26 @@
+body { 
+    font-family: 'lato'; 
+}
+
+#editor {
+  height:300px;
+  font-size: 16px;
+  border: 1px solid #eee;
+  font-family: 'PT Mono', monospace;
+}
+
+header {
+    font-family: 'Poppins', sans-serif;
+    background: #394046;
+    color: #eee;
+}
+
+header h1 {
+        letter-spacing: 3px;
+    font-size: 40px;
+    margin: 0;
+    color: #9c9fa2;
+    padding-top: 18px;
+}
+
+header button { width:200px; }
