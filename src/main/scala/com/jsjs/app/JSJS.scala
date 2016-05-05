@@ -68,5 +68,5 @@ class JSJS {
 		Process("node out.js", jsjsPathFile).!!
 
 	private def getErrorLog: String =
-		io.Source.fromFile("jsjs.log") mkString
+		io.Source.fromFile("jsjs.log").mkString.trim
 }
