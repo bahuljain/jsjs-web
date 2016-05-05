@@ -17,6 +17,11 @@ class MyScalatraServlet extends JsjsStack with JacksonJsonSupport with CorsSuppo
 		contentType = formats("json")
 	}
 
+    // respond to pre-flight request
+    options("/*"){
+      response.setHeader("Access-Control-Allow-Headers", request.getHeader("Access-Control-Request-Headers"));
+    }
+
 	get("/") {
 		findTemplate("index") map { path =>
 			contentType = "text/html"
