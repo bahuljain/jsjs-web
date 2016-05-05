@@ -4,6 +4,8 @@ editor.setTheme("ace/theme/clouds");
 editor.getSession().setMode("ace/mode/scala");
 editor.$blockScrolling = Infinity
 
+var SERVER_URL = "http://localhost:8080/result";
+
 var gcd = multiline(function(){/*
 val gcd = /\(a, b) => {
   if a == b then a
@@ -89,6 +91,10 @@ var samples = {
     maps: maps
 };
 
+var print = function(msg) {
+    console.log(msg)
+};
+
 var allPanels = $('ul#examples li p').hide();
 
 $("ul#examples li").on('click', function(e) {
@@ -98,14 +104,56 @@ $("ul#examples li").on('click', function(e) {
     editor.setValue(samples[title], 1);
 });
 
+var showOutput = multiline(function(){/*
+var console_outputs = [];
+var print_me = function(msg) {
+    console_outputs.push(msg);
+};
+*/});
+
+var return_op = multiline(function() {/*
+;(function() { return console_outputs }());
+*/});
+
 var results = $('div#results')[0];
-$("button#run").on('click', function(e) {
-    var str = "this is cool";
-    var success = true;
-    $(results).find('p').text(str);
+
+var update_output = function(output, success) {
+    console.log(output);
+    $(results).slideDown(200);
+    var str;
+    if (success) {
+        str = output.map(function(o) { return "<p>" + o + "</p>" }).join("")
+    } else {
+        str = "<p>" + output + "</p>";
+    }
+    $(results).html(str);
     if (success) {
         $(results).addClass("success").removeClass("failure");
     } else {
         $(results).addClass("failure").removeClass("success");
     }
+};
+
+$("button#run").on('click', function(e) {
+    // fetch response
+    fetch(SERVER_URL)
+    .then(function(response) {
+            if (response.status !== 200) {
+                update_output("error from server", false);
+                return;
+            }
+            response.json().then(function(data) {
+                console.log("code loaded");
+                var code = data["compiledCode"];
+                code = code.replace("// printing utils", showOutput);
+                code += return_op;
+
+                var result = eval(code);
+                update_output(result, true);
+            });
+        })
+    .catch(function(err) {
+        update_output("errer in fetch: " + err, false);
+    });
+
 });
