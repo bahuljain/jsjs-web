@@ -1,7 +1,8 @@
 let jQuery = require('cash-dom');
 let samples = require('./samples');
 
-const SERVER_URL = "http://localhost:8080/compiler";
+//const SERVER_URL = "http://localhost:8080/compiler";
+const SERVER_URL = "http://ec2-52-87-156-152.compute-1.amazonaws.com/jsjs/compiler";
 
 // setting up the editor
 let editor = ace.edit("editor");
@@ -39,17 +40,21 @@ let update_output = function(output, success) {
     }
     jQuery(results).html(str);
     if (success) {
-        jQuery(results).addClass("success").removeClass("failure");
+        jQuery(results)
+            .addClass("success")
+            .removeClass("failure");
     } else {
-        jQuery(results).addClass("failure").removeClass("success");
+        jQuery(results).removeClass("failure")
+            .removeClass("success")
+            .addClass("failure");
     }
 };
 
 jQuery("button#run").on('click', function(e) {
     let userCode = editor.getValue();
 
-    // loading
-    update_output("Loading ...", false);
+    // loading...
+    jQuery(results).html("<p>Loading ...</p>");
 
 
     fetch(SERVER_URL, {

@@ -1,12 +1,11 @@
 /* set of JSJS code samples */
 
 let gcd = `val gcd = /\\(a, b) => {
+  // nested if-else expressions
   if a == b then a
-  else {
-    if a > b
-    then gcd((a - b), b)
-    else gcd((b - a), a);
-  };
+  else if a > b
+  then gcd((a - b), b)
+  else gcd((b - a), a);
 };
 
 print(gcd(10, 24));`;

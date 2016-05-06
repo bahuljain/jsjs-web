@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "watchify js/app.js -t babelify -o dist/bundle.js -v",
+    "deploy": "npm run build && surge",
     "build": "NODE_ENV=production browserify js/app.js -t babelify | uglifyjs -c > dist/bundle.js"
   },
   "repository": {

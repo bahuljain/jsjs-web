@@ -4,14 +4,17 @@
   <meta charset="utf-8">
 
   <!-- Add a page title -->
-  <title>JSJS</title>
-  <meta title="description" content="JSJS"> 
+  <title>The JSJS Programming Language</title>
+  <meta title="description" content="JSJS - A Strongly Typed Language For the Web">
+
+  <meta property="og:title" content="The JSJS Programming Language" />
+  <meta property="og:description" content="JSJS - A Strongly Typed Language For the Web" />
+  <meta property="og:image" content="http://jsjs-lang.org/logo.png" />
 
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/skeleton.css">
-  <link rel="stylesheet" href="css/main.css">
-  
+
   <link href="http://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
   <link href='https://fonts.googleapis.com/css?family=PT+Mono' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Bangers' rel='stylesheet' type='text/css'>
@@ -81,14 +84,22 @@
           <button id="run" class="button button-primary">► Run in browser</button>
         </div>
 
-        <div id="editor">// the square function
+        <div id="editor">// let's define a function
 val sq = /\(x) => x * x;
 
+// values and functions both 
+// can be optionally annotated
 val sum: num = List.fold_left(
+
+    // lambda expressions
     /\(x, y) => x + y, 0,
+
+    // the List module has
+    // a bunch of useful functions
     List.map(sq, List.range(1, 10))
 );
 
+// show result
 print(sum);
 </div>
 
