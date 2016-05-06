@@ -1,27 +1,31 @@
 /* set of JSJS code samples */
 
-let gcd = `val gcd = /\(a, b) => {
+let gcd = `val gcd = /\\(a, b) => {
   if a == b then a
   else {
     if a > b
     then gcd((a - b), b)
     else gcd((b - a), a);
   };
-};`;
+};
 
-let prime = `val countPrimes = /\(n: num): num => {
-  val aux = /\(count: num, l: list num): num => {
-    if hd(l) * hd(l) <= n
-    then aux(count + 1, List.filter(/\(x: num): bool => x % hd(l) != 0, l))
-    else count + List.length(l);
-  };
+print(gcd(10, 24));`;
 
-  aux(0, List.range(2, n+1));
-};`;
+let prime = `val countPrimes = /\\(n: num): num => {
+    val aux = /\\(count, l) => {
+        if hd(l) * hd(l) <= n
+        then aux(count + 1, List.filter(/\\(x) => x % hd(l) != 0, l))
+        else count + List.length(l);
+    };
+    aux(0, List.range(2, n+1));
+};
 
-let bottles = `val toStr = /\(x: num): string => if x == 0 then "no more" else num_to_string(x);
+// should be 25
+print(countPrimes(100));`;
 
-val ninetyNine = /\(x: num): unit => {
+let bottles = `val toStr = /\\(x: num): string => if x == 0 then "no more" else num_to_string(x);
+
+val ninetyNine = /\\(x) => {
   if x == 0
   then {
      print("No more bottles of beer on the wall, no more bottles of beer.");
@@ -47,8 +51,7 @@ val ninetyNine = /\(x: num): unit => {
 ninetyNine(99);`;
 
 
-let maps = `
-// create maps just like javascript
+let maps = `// create maps just like javascript
 val marksInExams = {
     "physics": 80,
     "mathematics": 83,
@@ -64,9 +67,9 @@ val moneyOwedByFriends = {
 };
 
 // a function that takes a map
-val getTotal = /\(m: <string: num>): num => {
+val getTotal = /\\(m: <string: num>): num => {
     val values = Map.values(m);
-    List.fold_left(/\(x, y) => x + y, 0, values);
+    List.fold_left(/\\(x, y) => x + y, 0, values);
 };
 
 print(getTotal(moneyOwedByFriends));`;

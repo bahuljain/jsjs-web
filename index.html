@@ -84,14 +84,13 @@
         <div id="editor">// the square function
 val sq = /\(x) => x * x;
 
-// optional annotations
-val sum: list num = List.fold_left(
-    // lambda expressions
-    /\(x, y) => x + y, 0
-    
-    // standard library
+val sum: num = List.fold_left(
+    /\(x, y) => x + y, 0,
     List.map(sq, List.range(1, 10))
-);</div>
+);
+
+print(sum);
+</div>
 
       <div id="results">
         <p>Go ahead - press the green button.</p>
