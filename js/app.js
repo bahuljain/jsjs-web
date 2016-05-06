@@ -21,7 +21,7 @@ jQuery("ul#examples li").on('click', function(e) {
 });
 
 let showOutput = `let console_outputs = [];
-let print_me = function(msg) {
+var print_me = function(msg) {
     console_outputs.push(msg);
 };`;
 
@@ -31,7 +31,6 @@ let results = jQuery('div#results')[0];
 
 let update_output = function(output, success) {
     console.log(output);
-    jQuery(results).slideDown(200);
     let str;
     if (success) {
         str = output.map(function(o) { return "<p>" + o + "</p>" }).join("")
@@ -47,11 +46,15 @@ let update_output = function(output, success) {
 };
 
 jQuery("button#run").on('click', function(e) {
-    // fetch response
-    fetch(SERVER_URL)
+    let userCode = editor.getValue();
+    fetch(SERVER_URL, {
+        "method": "post",
+        "headers": {"Content-type": "application/json"},
+        "body": JSON.stringify({"sourceCode": userCode})
+    })
     .then(function(response) {
             if (response.status !== 200) {
-                update_output("error from server", false);
+                update_output("There was an error returned by the server", false);
                 return;
             }
             response.json().then(function(data) {
@@ -59,6 +62,9 @@ jQuery("button#run").on('click', function(e) {
                 let code = data["compiledCode"];
                 code = code.replace("// printing utils", showOutput);
                 code += return_op;
+
+                // TODO: for debugging
+                window.compiledCode = code;
 
                 let result = eval(code);
                 update_output(result, true);

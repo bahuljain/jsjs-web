@@ -109,13 +109,12 @@ h4 {
     border-color: #4db60a;
 }
 
-
 div#results {
     border: 2px solid #eee;
     padding: 8px 14px;
     border-radius: 5px;
-    display: none;
 }
+
 div#results p {
     font-family: 'PT Mono', monospace;
     margin-bottom: 0;
