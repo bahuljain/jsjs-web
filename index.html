@@ -50,23 +50,23 @@
         edit the code for it in the editor.</p>
 
         <ul id="examples">
-          <li data-title="gcd">
+          <li class="slider" data-title="gcd">
             <h5>Greatest Common Divisor</h5>
             <p>Compute the GCD of two numbers using Euclid's algorithm</p>
           </li>
-          <li data-title="prime">
+          <li class="slider" data-title="prime">
             <h5>Prime Sieve</h5>
             <p>
            Sieve of Eratosthenes is a simple, ancient algorithm for finding all prime numbers up to any given limit.
             </p>
           </li>
-          <li data-title="bottles">
+          <li class="slider" data-title="bottles">
             <h5>99 bottles of beer</h5>
             <p>
             Joining the ranks of 600 other programming languages by programmatically generating this popular folk song.
             </p>
           </li>
-          <li data-title="maps">
+          <li class="slider" data-title="maps">
             <h5>Data Structures: Maps</h5>
             <p>
             Play with immutable maps and the rich standard library functions.
@@ -78,7 +78,7 @@
       <div class="eight columns">
         <div class="runner">
           <h4>Try it out!</h4>
-          <button id="run" class="button button-primary"> ► Run in browser</button>
+          <button id="run" class="button button-primary">► Run in browser</button>
         </div>
 
         <div id="editor">// the square function
@@ -93,7 +93,9 @@ val sum: list num = List.reduce(
     List.map(sq, List.range(1, 10))
 );</div>
 
-      <div id="results"></div>
+      <div id="results">
+        <p>Go ahead - press the green button.</p>
+      </div>
 
       </div>
     </div>
@@ -103,8 +105,6 @@ val sum: list num = List.reduce(
 </div>
 
 <script src="https://cdn.jsdelivr.net/ace/1.2.3/min/ace.js" type="text/javascript" charset="utf-8"></script>
-<script src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo="   crossorigin="anonymous"></script>
-<script src="js/multiline.js" type="text/javascript"></script>
-<script src="js/app.js" type="text/javascript"></script>
+<script src="dist/bundle.js" type="text/javascript"></script>
 </body>
 </html>
