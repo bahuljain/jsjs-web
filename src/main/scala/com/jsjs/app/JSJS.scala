@@ -2,6 +2,7 @@ package com.jsjs.app
 
 import java.io.File
 import sys.process.Process
+import java.io._
 
 case class CompilerResponse(
 	status: Int,
@@ -34,7 +35,13 @@ class JSJS {
 		 * compiler. The result of the compilation is
 		 * then stored in a file called 'jsjs.log'.
 		 */
-		val compilationProcess = Process(s"echo $code") #|
+        
+        // Save code to a file
+        val pw = new PrintWriter(new File("code.jsjs"))
+        pw.write(code)
+        pw.close
+
+		val compilationProcess = Process("cat code.jsjs") #|
 			Process("./jsjs.out", jsjsPathFile) #>
 			(new File("jsjs.log"))
 
