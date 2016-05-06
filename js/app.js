@@ -47,6 +47,11 @@ let update_output = function(output, success) {
 
 jQuery("button#run").on('click', function(e) {
     let userCode = editor.getValue();
+
+    // loading
+    update_output("Loading ...", false);
+
+
     fetch(SERVER_URL, {
         "method": "post",
         "headers": {"Content-type": "application/json"},
@@ -59,19 +64,30 @@ jQuery("button#run").on('click', function(e) {
             }
             response.json().then(function(data) {
                 console.log("code loaded");
-                let code = data["compiledCode"];
-                code = code.replace("// printing utils", showOutput);
-                code += return_op;
 
-                // TODO: for debugging
-                window.compiledCode = code;
+                let { status, compiledCode, compilationTime }  = data;
 
-                let result = eval(code);
-                update_output(result, true);
+                // compiler error
+                if (status === 1) {
+                    let { error } = data;
+                    update_output(error, false);
+
+                } else {
+                    let code = data["compiledCode"];
+                    console.log("got this code", code);
+                    code = code.replace("// printing utils", showOutput);
+                    code += return_op;
+
+                    // TODO: remove from prod
+                    window.compiledCode = code;
+
+                    let result = eval(code);
+                    update_output(result, true);
+                }
             });
         })
     .catch(function(err) {
-        update_output("errer in fetch: " + err, false);
+        update_output("Errer in fetch: " + err, false);
     });
 
 });

@@ -85,7 +85,7 @@
 val sq = /\(x) => x * x;
 
 // optional annotations
-val sum: list num = List.reduce(
+val sum: list num = List.fold_left(
     // lambda expressions
     /\(x, y) => x + y, 0
     
