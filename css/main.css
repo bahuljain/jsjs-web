@@ -2,18 +2,26 @@ body {
     font-family: 'Lato', sans-serif;
     line-height: 1.5;
     font-size: 100%;
+    background: #eee;
+    color: #453A49;
 }
 
 div#results.success {
     border-color: #46A609;
+    background: #edfde3;
 }
 
 div#results.failure {
-    border-color: #C52727;
-    animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+    border-color: #453A49;
+    background: #fcefef;
+    animation: shake 1.12s cubic-bezier(.36,.07,.19,.97) both;
     transform: translate3d(0, 0, 0);
     backface-visibility: hidden;
     perspective: 1000px;
+}
+
+.strikethrough {
+    text-decoration: line-through;
 }
 
 @keyframes shake {
@@ -43,30 +51,37 @@ div#results.failure {
     margin-bottom: 20px;
 }
 
+div.ace_layer.ace_text-layer {
+    margin-left: 10px !important;
+}
+
+h1 span.hll {
+    color: #9F92A4;
+}
+
 header {
-    background: #394046;
+    background: #453A49;
     margin-bottom: 40px;
-    padding: 10px;
+    padding: 0 0 10px 0;
 }
 
 div.topbar {
-    background: #C52727;
+    background: #453A49;
+    padding-top: 10px;
 }
 
 header p {
-    color: white;
+    color: #eee;
     margin: 0;
     font-size: 13px;
-    font-weight: 200;
-    font-style: italic;
+    font-family: 'Montserrat';
 }
 
 div.topbar h1 {
-    letter-spacing: 6px;
-    font-size: 60px;
+    letter-spacing: 5px;
     margin: 0;
-    font-family: 'Bangers', cursive;
-    color: white;
+    font-family: 'Montserrat', sans-serif;
+    color: #eee;
 }
 
 div.runner {
@@ -77,8 +92,12 @@ div.runner {
 
 .main p {
     font-size: 14px;
-    color: #394046;
+    color: #453A49
     font-family: 'Lato';
+}
+
+img#logo {
+    width: 60px;
 }
 
 ul#examples {
@@ -87,7 +106,7 @@ ul#examples {
 
 ul li {
     border-radius: 5px;
-    border: 1px solid #eee;
+    border: 1px solid #ccc;
     padding: 10px 20px;
     cursor: pointer;
 }
@@ -96,7 +115,7 @@ ul#features {
     list-style-type: none;
     font-family: 'Lato', sans-serif;
     font-size: 12px;
-    color: white;
+    color: #eee;
     display: flex;
 }
 
@@ -106,8 +125,14 @@ ul#features li {
 
 
 ul li:hover {
-    border: 1px solid #46A609;
+    border: 1px solid #9F92A4;
+    background: #453A49;
+    color: #eee;
     cursor: pointer;
+}
+
+.ace-tomorrow-night {
+    background-color: #453A49 !important;
 }
 
 ul h5 {
@@ -124,23 +149,32 @@ ul li p {
 h4 {
     text-transform: uppercase;
     letter-spacing: 3px;
-    color: #C52727;
+    color: #453A49;
     font-size: 24px;
-    font-family: 'Bangers', cursive;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .button.button-primary { 
-    background-color: #46A609;
-    border-color: #46A609;
+    background-color: #897391;
+    border-color: #897391;
 }
 
 .button.button-primary:hover { 
-    background-color: #4db60a;
-    border-color: #4db60a;
+    background-color: #453A49;
+    border-color: #453A49;
+}
+.button.button-primary:active { 
+    background-color: #453A49;
+    border-color: #453A49;
+}
+.button.button-primary:focus { 
+    background-color: #453A49;
+    border-color: #453A49;
 }
 
+
 div#results {
-    border: 2px solid #eee;
+    border: 2px solid #ccc;
     padding: 8px 14px;
     border-radius: 5px;
 }
@@ -161,4 +195,12 @@ div#results p {
 
 .slider.closed {
 	max-height: 20px;
+}
+
+footer {
+    border-top: 1px solid #ccc;
+    text-align: center;
+    font-size: 14px;
+    margin-top: 40px;
+    padding-top: 20px;
 }

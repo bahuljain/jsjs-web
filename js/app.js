@@ -6,8 +6,10 @@ const SERVER_URL = "http://ec2-52-87-156-152.compute-1.amazonaws.com/jsjs/compil
 
 // setting up the editor
 let editor = ace.edit("editor");
-editor.setTheme("ace/theme/clouds");
+editor.setTheme("ace/theme/tomorrow_night");
 editor.getSession().setMode("ace/mode/scala");
+editor.renderer.setShowGutter(false);
+editor.renderer.setScrollMargin(10, 10);
 editor.$blockScrolling = Infinity
 
 // initial setup
