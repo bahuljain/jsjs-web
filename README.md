@@ -1,5 +1,13 @@
 # JSJS #
 
+![img](logo.png)
+
+## Frontend
+For the front-end, refer to the [gh-pages](https://github.com/bahuljain/jsjs-web/tree/gh-pages) branch.
+
+## Backend
+The backend for the website is written in Scala using [Scalatra](scalatra.org)
+
 ## Build & Run ##
 
 ```sh
