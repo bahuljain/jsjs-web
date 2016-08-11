@@ -4,23 +4,15 @@
 For the front-end, refer to the [gh-pages](https://github.com/bahuljain/jsjs-web/tree/gh-pages) branch.
 
 ## Backend
-The backend for the website is written in Scala using [Scalatra](scalatra.org)
+The compiler service is written in Go
 
 ## Build & Run ##
 
-```sh
-$ cd JSJS
-$ ./sbt
-> jetty:start
-> browse
-```
-
-If `browse` doesn't launch your browser, manually open [http://localhost:8080/](http://localhost:8080/) in your browser.
-
+Make sure you have the [JSJS](http://github.com/prakhar1989/JSJS) compiler built for your system. To compile JSJS code, this compiler uses the `JSJS` environment variable to search for the binary that compiles the JSJS code, so do set that before you run this.
 
 ## Using API ##
 
-- hit the route `/compiler` to compile your JSJS code to Javascript.
+- hit the route `/compile` to compile your JSJS code to Javascript.
 
 - request body format:
   ```json
@@ -36,6 +28,5 @@ If `browse` doesn't launch your browser, manually open [http://localhost:8080/](
     "sourceCode": "...your original JSJS code...",
     "compiledCode": "...equivalent Javascript code after compilation...",
     "error": "...error logs in case of compilation failure...",
-    "compilationTime": 12412332
   }
   ```
