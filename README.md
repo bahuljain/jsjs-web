@@ -11,6 +11,7 @@ The compiler service is written in Go
 Make sure you have the [JSJS](http://github.com/prakhar1989/JSJS) compiler built for your system. To compile JSJS code, this compiler uses the `JSJS` environment variable to search for the binary that compiles the JSJS code, so do set that before you run this.
 
 ```shell
+$ export JSJS=/my/compiler/location
 $ go run server.go
 ```
 

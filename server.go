@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"encoding/json"
 	"errors"
-	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -38,7 +37,6 @@ func validateOrigin(origin string) bool {
 		"jsjs-lang.org": true,
 	}
 	parsedURL, _ := url.Parse(origin)
-	fmt.Println(parsedURL.Host)
 	host := strings.Split(parsedURL.Host, ":")[0]
 	return allowedOrigins[host]
 }
@@ -111,8 +109,11 @@ func compileCode() ([]byte, error) {
 	return code, nil
 }
 
-func welcomeMessageFunc(w http.ResponseWriter, r *http.Request) {
-	w.Write([]byte("Server is up. Hit /compile to start compiling JSJS"))
+func LogRequestsWrapper(handler http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		log.Printf("%s %s %s", r.RemoteAddr, r.Method, r.URL)
+		handler.ServeHTTP(w, r)
+	})
 }
 
 // incoming request format: curl -X POST -d '{"sourceCode": "print(10 + 50);" }' <url>
@@ -171,7 +172,9 @@ func main() {
 	}
 
 	log.Print("Running server on " + PORT)
-	http.HandleFunc("/", welcomeMessageFunc)
+	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		w.Write([]byte("Server is up. Hit /compile to start compiling JSJS"))
+	})
 	http.HandleFunc("/compile", handleCompileFunc)
-	log.Fatal(http.ListenAndServe(PORT, nil))
+	log.Fatal(http.ListenAndServe(PORT, LogRequestsWrapper(http.DefaultServeMux)))
 }
