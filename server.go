@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"encoding/json"
 	"errors"
-	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -165,11 +164,6 @@ func handleCompileFunc(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func handleDeepGramMsg(w http.ResponseWriter, r *http.Request) {
-	log.Printf("Got a request on /deepgram by: %s", r.RemoteAddr)
-	fmt.Fprintf(w, "Thanks for reaching out.\nPlease email me with the subject: 'We hit the cURL !!!' :)\n")
-}
-
 func main() {
 	compilerPath := os.Getenv(JSJS_ENVVAR)
 
@@ -182,6 +176,5 @@ func main() {
 		w.Write([]byte("Server is up. Hit /compile to start compiling JSJS"))
 	})
 	http.HandleFunc("/compile", handleCompileFunc)
-	http.HandleFunc("/deepgram", handleDeepGramMsg)
 	log.Fatal(http.ListenAndServe(PORT, LogRequestsWrapper(http.DefaultServeMux)))
 }
