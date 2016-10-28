@@ -172,9 +172,11 @@ func main() {
 	}
 
 	log.Print("Running server on " + PORT)
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		w.Write([]byte("Server is up. Hit /compile to start compiling JSJS"))
-	})
+
+    /** ROUTES */
+    http.Handle("/", http.FileServer(http.Dir("templates")));
+    http.Handle("/static", http.FileServer(http.Dir("static")));
 	http.HandleFunc("/compile", handleCompileFunc)
+
 	log.Fatal(http.ListenAndServe(PORT, LogRequestsWrapper(http.DefaultServeMux)))
 }
