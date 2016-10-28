@@ -1,13 +1,8 @@
-The frontend to the JSJS website.
-
-
-Install the following before proceeding - 
-1. `npm install browserify`
-2. `npm install uglify`
-3. `npm install watchify`
+The frontend to the JSJS website. This is the version running on the [website](jsjs-lang.org).
 
 ### Dev
 ```
+$ npm install
 $ npm run watch
 ```
 
