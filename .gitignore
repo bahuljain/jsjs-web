@@ -70,3 +70,8 @@ jrebel.lic
 
 # jsjs
 *.log
+=======
+.DS_Store
+node_modules
+npm_debug.log
+dist/*.js

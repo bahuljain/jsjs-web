@@ -35,3 +35,16 @@ $ go run server.go
     "error": "...error logs in case of compilation failure...",
   }
   ```
+
+### Frontend
+
+### Dev
+```
+$ npm install
+$ npm run watch
+```
+
+### Build
+```
+$ npm run build
+```
