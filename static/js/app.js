@@ -1,8 +1,8 @@
 let jQuery = require('cash-dom');
 let samples = require('./samples');
 
-//const SERVER_URL = "http://localhost:8080/compiler";
-const SERVER_URL = "http://ec2-52-87-156-152.compute-1.amazonaws.com/jsjs/compiler";
+const SERVER_URL = "/compile";
+//const SERVER_URL = "http://ec2-52-87-156-152.compute-1.amazonaws.com/jsjs/compiler";
 
 // setting up the editor
 let editor = ace.edit("editor");

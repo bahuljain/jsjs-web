@@ -174,9 +174,9 @@ func main() {
 	log.Print("Running server on " + PORT)
 
     /** ROUTES */
-    http.Handle("/", http.FileServer(http.Dir("templates")));
-    http.Handle("/static", http.FileServer(http.Dir("static")));
 	http.HandleFunc("/compile", handleCompileFunc)
+    http.Handle("/", http.FileServer(http.Dir("templates")))
+    http.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir("static"))))
 
 	log.Fatal(http.ListenAndServe(PORT, LogRequestsWrapper(http.DefaultServeMux)))
 }
