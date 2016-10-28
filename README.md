@@ -1,7 +1,17 @@
 #![img](logo.png)
 
 ## Frontend
-For the front-end, refer to the [gh-pages](https://github.com/bahuljain/jsjs-web/tree/gh-pages) branch.
+
+###Dev
+```
+$ npm install
+$ npm run watch
+```
+
+### Build
+```
+$ npm run build
+```
 
 ## Backend
 The compiler service is written in Go
@@ -36,15 +46,15 @@ $ go run server.go
   }
   ```
 
-### Frontend
+### Deployment
 
-### Dev
-```
-$ npm install
-$ npm run watch
-```
+This app is deployed using a container, and uses [this image](https://hub.docker.com/r/prakhar1989/jsjs/).  Any changes in the app require building and publishing a new image and updating the [Dockerfile](Dockerfile), so that it can be deployed on [now](https://zeit.co/now).
 
-### Build
-```
-$ npm run build
-```
+A rough order of steps to achieve the above are -
+
+1. Make changes in the app
+2. `docker cp` the files to container's `/opt/` path in filesystem.
+3. Compile the Go binary.
+4. Build a new image with updated version number using `docker commit`.
+5. Finally publish it using `docker push`. Update number in the Dockerfile.
+
