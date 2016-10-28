@@ -142,7 +142,11 @@ func handleCompileFunc(w http.ResponseWriter, r *http.Request) {
 
 		writeCodeToFile(d.SourceCode)
 		var j responseJSON
+
+        currentDir, _ := os.Getwd()
 		output, err := compileCode()
+        _ = os.Chdir(currentDir)
+
 		j.SourceCode = d.SourceCode
 		if err != nil {
 			log.Print("unable to compile. " + err.Error())
