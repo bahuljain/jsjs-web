@@ -1,5 +1,5 @@
 # base image
-FROM prakhar1989/jsjs:version2
+FROM prakhar1989/jsjs:version3
 MAINTAINER Prakhar Srivastav <prakhar@prakhar.me>
 
 LABEL name="jsjs-web"
